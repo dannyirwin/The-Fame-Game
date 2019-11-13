@@ -1,0 +1,388 @@
+:root {
+    --color1: #407771;
+    --color2: #2d3047;
+    --color3: #fffd82;
+    --color4: #ff9b71;
+    --color5: #e84855;
+    --color1-light: #1b998b;
+    --color2-light: #63659c;
+    --color5-dark: #b8232f;
+
+    --border-settings-button: 5px solid var(--color1);
+    --border-settings-display: 5px solid var(--color2);
+    --border-radius-settings: 10px;
+
+    --text-otuline: -1px -1px 0 var(--color2),
+        1px -1px 0 var(--color2),
+        -1px 1px 0 var(--color2),
+        1px 1px 0 var(--color2);
+
+    --font1: 'Pacifico', cursive;
+    --font2: 'Mitr', sans-serif;
+
+    --controlPannel-helgith: 90px;
+
+}
+
+body {
+    overflow: hidden;
+    position: static;
+    width: 100vw;
+    font-family: var(--font2);
+    display: flex;
+    user-select: none;
+}
+
+#startScreen {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: var(--color2);
+}
+
+#startButton {
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+    color: var(--color2);
+    margin: auto;
+}
+
+#gameScreen {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+    background-color: var(--color2);
+    flex-direction: column;
+}
+
+#controlPanel {
+    background-color: antiquewhite;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    text-align: center;
+    width: 100vw;
+    height: var(--controlPannel-helgith);
+    min-height: 72px;
+}
+
+#generatorPannel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: var(--color5);
+    justify-content: center;
+}
+
+#clickerPannel {
+    display: none;
+    flex-direction: column;
+    background: var(--color4);
+    align-content: center;
+}
+
+#fameTab {
+    align-self: flex-start;
+    transform: none;
+    background: var(--color2);
+    border-radius: 10px;
+    z-index: -1;
+}
+
+#fameTab > .tabInner {
+    color: var(--color2);
+    font-size: 18px;
+    width: 120px;
+}
+
+#fameDisplay {
+    white-space: nowrap;
+}
+
+
+#generatorTab > .tabInner {
+    background-color: var(--color5);
+}
+
+#clickerTab > .tabInner {
+    background-color: var(--color4);
+}
+
+#upgradeTab > .tabInner {
+    background-color: var(--color3);
+}
+
+#infoTab > .tabInner {
+    background-color: var(--color1);
+}
+
+#FPSDisplay {
+    white-space: nowrap;
+    border: none;
+    display: flex;
+    flex-wrap: nowrap;
+    color: white;
+    text-shadow: var(--text-otuline);
+    padding: 0 0 0 20px;
+}
+
+#upgradePannel {
+    display: none;
+    background: var(--color3);
+    height: 100vh;
+}
+
+#infoPannel {
+    display: none;
+    background: var(--color1);
+    height: 100vh;
+}
+
+
+.dividerBar {
+    display: block;
+    height: 25px;
+    width: 100vw;
+    position: absolute;
+    bottom: 0px;
+    z-index: -1;
+    background: linear-gradient(45deg,
+            var(--color2),
+            var(--color2) 60px,
+            var(--color1) 60px,
+            var(--color1) 70px,
+            var(--color3) 70px,
+            var(--color3) 80px,
+            var(--color4) 80px,
+            var(--color4) 90px,
+            var(--color5) 90px,
+            var(--color5) 100px,
+            var(--color2) 100px);
+}
+
+.gamePannel {
+    z-index: 20;
+    overflow-y: scroll;
+    min-height: calc(100vh - var(--controlPannel-helgith));
+    width: 100vw;
+    margin-top: 90px;
+    padding-top: 5px;
+}
+
+.button {
+    border-left: var(--border-settings-button);
+    border-radius: var(--border-radius-settings);
+    text-align: center;
+    background: white;
+    padding: 10px;
+    margin: 10px;
+}
+
+.generatorDisplay {
+    flex-direction: column;
+    flex-basis: 350px;
+    display: flex;
+    background: white;
+    margin: 5px;
+    align-content: center;
+    text-align: center;
+    align-self: baseline;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.buyButtonsContainer {
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.buyButton {
+    background: var(--color1-light);
+    color: white;
+    flex: 1;
+    width: 100px;
+    white-space: nowrap;
+}
+
+.buyCustom {
+    flex-basis: 250px;
+}
+
+.amount {
+    font-family: var(--font1);
+    font-size: 50px;
+    justify-content: center;
+    align-content: center;
+}
+
+.name {
+    font-family: var(--font1);
+    font-size: 25px;
+}
+
+.infoButton {
+    color: var(--color2);
+    padding-bottom: 20px;
+}
+
+.infoText {
+    display: none;
+    padding: 20px 10px;
+    text-align: justify;
+}
+
+.infoTextExpanded {
+    display: flex;
+}
+
+.tabOuter {
+    display: block;
+    margin: 10px 2px;
+    height: 52px;
+    border-radius: 10px 10px 0px 0px;
+    transform: translate(0, 30px);
+    background: var(--color2);
+}
+
+.tabInner {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 9px;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 5px;
+    background-color: white;
+    color: var(--color2);
+    font-size: 16px;
+}
+
+.tabSelected {
+    transform: translate(0, 44px);
+    height: 32px;
+}
+
+.tabSelected > .tabInner {
+    z-index: 10;
+}
+
+.summary {
+    justify-content: center;
+    align-content: center;
+    min-width: 80%;
+}
+
+.clickerButton {
+    height: 72px;
+    width: 72px;
+    background: var(--color5);
+    box-shadow: 5px 5px var(--color5-dark);
+    border-radius: 100%;
+    margin-left: 2vw;
+    font-size: 16px;
+    line-height: 20px;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    transform: translate(0, -2px);
+}
+
+.clickerButtonPaused {
+    transform: translate(3px, 1px);
+    box-shadow: 2px 2px var(--color5-dark);
+    animation: buttonPaused;
+    animation-duration: 1s;
+}
+
+@keyframes buttonPaused {
+    from {
+        filter: brightness(0.2);
+    }
+
+    to {
+        filter: brightness(0.8);
+    }
+}
+
+.clickerDisplay {
+    border-radius: 100px;
+    display: flex;
+    display: flex;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-size: 30px;
+    padding: 10px;
+    padding-left: 3vw;
+    background: white;
+    height: 82px;
+    margin: 5px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.clickerSummary {
+    width: 250px;
+}
+
+.clickerAmount,
+.clickerProduction {
+    font-size: 12px;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+
+    .tabOuter {}
+
+    .tabInner {
+        width: 72px;
+        font-size: 20px;
+    }
+
+    .tabOuter:nth-of-type(2) {
+        margin-left: 10vw;
+    }
+
+    #fameTab > .tabInner {
+        font-size: 30px;
+        width: 250px;
+        color: var(--color2);
+        font-family: var(--font1);
+    }
+
+    #clickerPannel {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        padding: 20px;
+    }
+
+    .clickerDisplay {
+        min-width: 300px;
+        width: 25vw;
+        margin: 10px
+    }
+
+    b
+}
+
+
+// TODO Make the Generator Display Elements looks nice at the bottom when a full row is not filled up
+// TODO  Make Resposnive lol
+// TODO  Make it look ok on mobile First
+// TODO  Make it look ok on a computer
+// TODO  Make work for all browsers
+// TODO  [x] Make the Control Pannel look nice
