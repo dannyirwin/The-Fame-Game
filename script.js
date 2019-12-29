@@ -36,7 +36,7 @@ function startup() {
     }
 
     for (var i in player.generators) {
-        createGeneratorElement(i);
+        createGeneratorElement(player.generators[i]);
     }
 
     for (var i in player.clickers) {
@@ -123,11 +123,10 @@ function calculateFame(generator) {
     }
 }
 
-function createGeneratorElement(i) { // TODO change this to take in a Generator Object instead of an Index 
+function createGeneratorElement(generator) { // TODO change this to take in a Generator Object instead of an Index 
     //---Generates Generator Display elements---//
 
-    var generator = player.generators[i],
-        genAmount = generator.amount,
+    var genAmount = generator.amount,
         genCost = generator.cost,
         genProduction = generator.baseProduction * ticksPerSecond,
         genName = generator.name;
@@ -211,7 +210,8 @@ function createGeneratorElement(i) { // TODO change this to take in a Generator 
 
     $('#generatorInventory').append(newGenElement);
     $('#' + genId + 'Display').data(generator);
-    $('#' + genId + 'Display').data('index', i);
+    $('#' + genId + 'Display').data('index', player.generators.findIndex(x => x.name == generator.name)
+   );
     $('#' + genId + 'Name').text(genName);
     $('#' + genId + 'UnlockButton').text("-" + generator.unlockCost + " Fame to unlock " + genName);
 
@@ -233,7 +233,7 @@ function createGeneratorElement(i) { // TODO change this to take in a Generator 
 
     $('#infoText' + genId).text(generator.info);
 
-    if (player.generators[i].cost == undefined) {
+    if (generator.cost == undefined) {
         $('#' + genId + 'BuyButtonsContainer').css('display', 'none');
     }
 
@@ -597,7 +597,7 @@ function createCustomGenerator() {
         $('#errorDisplay').text('');
 
         for (var i in player.generators) {
-            createGeneratorElement(i);
+            createGeneratorElement(player.generators[i]);
         }
     } else {
 
@@ -664,7 +664,7 @@ function sortGenerators() {
 
 
     for (var i in generatorArr) { //TODO  fix this after the createGeneratorElement fix
-        createGeneratorElement(i);
+        createGeneratorElement(generatorArr[i]);
     }
     
     console.log(generatorArr);
