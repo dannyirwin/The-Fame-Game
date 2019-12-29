@@ -63,7 +63,7 @@ function beginGame() {
     if (savedFile != null) {
         player = savedFile;
     }
-    
+
 
     $('#startScreen').css('display', 'none');
     $('#gameScreen').css('display', 'flex');
@@ -123,7 +123,7 @@ function calculateFame(generator) {
     }
 }
 
-function createGeneratorElement(i) {
+function createGeneratorElement(i) { // TODO change this to take in a Generator Object instead of an Index 
     //---Generates Generator Display elements---//
 
     var generator = player.generators[i],
@@ -373,13 +373,13 @@ function updateGeneratorDisplay() {
 }
 
 function switchScreen(id) {
-    if (typeof(arguments[0]) != "string") {
-        
+    if (typeof (arguments[0]) != "string") {
+
         var id = this.id;
         console.log("Going to the screen with Id: " + id);
-    }   
+    }
     console.log(id);
-    
+
     if (id !== 'fameTab') {
         $('.gamePannel').css('display', 'none');
         $('.tabOuter').removeClass('tabSelected');
@@ -633,9 +633,69 @@ function cancelResetButton() {
     $('#confirmResetPannel').css('display', 'none');
 }
 
-function sort(sortyBy) {
+function sortGenerators() {
+    var sortBy = this.id,
+        generatorArr = [];
+
+    for (var i in player.generators) {
+        generatorArr.push(player.generators[i]);
+    }
+
+    $("#generatorInventory").html('');
+    
+    if (sortBy == 'default') {
+        console.log("Sorting by Default");  
+    }
+
+    if (sortBy == 'alphabetically') {
+        generatorArr = generatorArr.sort(alphabetically);
+        console.log("Sorting Alphabetically");
+    }
+    
+    if (sortBy == 'amountAscending') {
+        generatorArr = generatorArr.sort(amountAscending);
+        console.log("Sorting by Amount-Ascending");
+    }
+    
+    if (sortBy == 'amountDescending') {
+        generatorArr = generatorArr.sort(amountDescending);
+        console.log("Sorting by Amount-Descending");
+    }
+
+
+    for (var i in generatorArr) { //TODO  fix this after the createGeneratorElement fix
+        createGeneratorElement(i);
+    }
+    
+    console.log(generatorArr);
+
+    function alphabetically(a, b) {
+        var nameA = a.name.toLocaleLowerCase(),
+            nameB = b.name.toLocaleLowerCase();
+
+        if (nameA > nameB) {
+            return 1;
+        } else if (nameA < nameB) {
+            return -1;
+        }
+    }
+    
+    function amountAscending(a, b) {
+        var amountA = a.amount,
+            amountB = b.amount;
+
+        return amountA - amountB;
+    }
+    
+    function amountDescending(a, b) {
+        var amountA = a.amount,
+            amountB = b.amount;
+
+        return amountB - amountA;
+    }
     
 }
+
 
 $(document).ready(function () {
 
@@ -654,13 +714,14 @@ $(document).ready(function () {
     $(document).on('click', '#confirmResetButton', startNewGame);
     $(document).on('click', '#cancelResetButton', cancelResetButton);
 
+    $(document).on('click', '.sortButton', sortGenerators)
+
 });
 
 /*if (typeof (canvas.getContext) !== "undefined") {
     cx = canvas.getContext('2d');
     gameLoop();
 }*/
-
 
 // TODO Fix Aquaintance degredation to friends
 // TODO Make a way to sort inventory
