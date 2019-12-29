@@ -63,12 +63,14 @@ function beginGame() {
     if (savedFile != null) {
         player = savedFile;
     }
+    
 
     $('#startScreen').css('display', 'none');
     $('#gameScreen').css('display', 'flex');
 
     console.log("Game Started");
     gameLoop();
+    switchScreen("generatorTab");
 }
 
 function buy() {
@@ -207,7 +209,7 @@ function createGeneratorElement(i) {
 
     infoButtonDiv.appendChild(infoTextDiv);
 
-    $('#generatorPannel').append(newGenElement);
+    $('#generatorInventory').append(newGenElement);
     $('#' + genId + 'Display').data(generator);
     $('#' + genId + 'Display').data('index', i);
     $('#' + genId + 'Name').text(genName);
@@ -370,11 +372,14 @@ function updateGeneratorDisplay() {
 
 }
 
-function switchScreen() { //TODO make params optinal
-    var id = this.id,
-        cssChange = 'translate(0, vh)';
-
-
+function switchScreen(id) {
+    if (typeof(arguments[0]) != "string") {
+        
+        var id = this.id;
+        console.log("Going to the screen with Id: " + id);
+    }   
+    console.log(id);
+    
     if (id !== 'fameTab') {
         $('.gamePannel').css('display', 'none');
         $('.tabOuter').removeClass('tabSelected');
@@ -393,7 +398,6 @@ function switchScreen() { //TODO make params optinal
             $('#infoTab').addClass('tabSelected');
         }
 
-        console.log("Goint to " + id + " associated Pannel.")
     }
 
 
@@ -589,7 +593,7 @@ function createCustomGenerator() {
         $('#customBaseProduction').val('').blur();
         $('#customInfo').val('').blur();
 
-        $('#generatorPannel').html('');
+        $('#generatorInventory').html('');
         $('#errorDisplay').text('');
 
         for (var i in player.generators) {
@@ -627,6 +631,10 @@ function resetButton() {
 
 function cancelResetButton() {
     $('#confirmResetPannel').css('display', 'none');
+}
+
+function sort(sortyBy) {
+    
 }
 
 $(document).ready(function () {
