@@ -6,12 +6,15 @@
     <title>Untitled Clicker Game</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Mitr|Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mitr|Pacifico|Oxygen+Mono&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div id='startScreen'>
-        <div id='startButton' class='button'>Start New Game</div>
+        <div id='startButtonsContainer'>
+            <div id='resumeButton' class='startButtons button'>Resume Game</div>
+            <div id='restartButton' class='startButtons button'>Start New Game</div>
+        </div>
     </div>
 
     <div id='gameScreen'>
@@ -34,7 +37,7 @@
             </div>
             <div id='upgradeTab' class='tabOuter'>
                 <div class='up tabInner'>
-                    <i class="fas fa-level-up-alt"></i></i>
+                    <i class="fas fa-level-up-alt"></i>
                 </div>
             </div>
             <div id='infoTab' class='tabOuter'>
@@ -43,15 +46,32 @@
                 </div>
             </div>
             <div id='FPSDisplay' class='dividerBar'>
-                <div id='FPSDisplay' class=''>Fame/s</div>
+                <div id='FPSDisplay'></div>
             </div>
+
         </div>
 
         <div id='generatorPannel' class='gamePannel'></div>
         <div id='clickerPannel' class='gamePannel'></div>
         <div id='upgradePannel' class='gamePannel'></div>
-        <div id='infoPannel' class='gamePannel'></div>
+        <div id='infoPannel' class='gamePannel'>
+            <div id='customGeneratorContainer'>
+                Create a custome Fame Generator
+                <input id='customName' type='text' name='name' placeholder="Generator Name">
+                <input id='customCost' type='text' name='cost' placeholder="Cost for one">
+                <input id='customUnlockCost' type='text' name='unlockCost' placeholder="Cost to unlock">
+                <input id='customBaseProduction' type='text' name='name' placeholder="Base Production">
+                <input id='customInfo' type='text' name='name' placeholder="Description">
+                <div id='errorDisplay'></div>
+                <div id='createCustomGenerator' class='button'>Create Generator</div>
+            </div>
+            <div id='restartButton' class='button'>Restart Game</div>
+        </div>
 
+    </div>
+    <div id='confirmResetPannel'>
+        <div id='confirmReset'>Are you sure you'd like to reset?<br> Everything including custom Generators will be deleted.<div id='confirmResetButton' class='button'>Reset</div><div id='cancelResetButton' class='button'>Cancel </div>
+        </div>
     </div>
 
 </body>
@@ -60,6 +80,7 @@
 
 <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>-->
 <script src="https://kit.fontawesome.com/503c9ad505.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 <script src="./objects.js"></script>
 <script src="./jquery-3.4.1.js"></script>
 <script src="./script.js"></script>

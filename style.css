@@ -7,6 +7,7 @@
     --color1-light: #1b998b;
     --color2-light: #63659c;
     --color5-dark: #b8232f;
+    --color5-light: #f7bbc0;
 
     --border-settings-button: 5px solid var(--color1);
     --border-settings-display: 5px solid var(--color2);
@@ -19,6 +20,7 @@
 
     --font1: 'Pacifico', cursive;
     --font2: 'Mitr', sans-serif;
+    --font3: 'Oxygen+Mono', monospace;
 
     --controlPannel-helgith: 90px;
 
@@ -39,17 +41,21 @@ body {
     position: absolute;
     right: 0;
     top: 0;
-    display: flex;
+    display: none;
     align-content: center;
     justify-content: center;
     background-color: var(--color2);
 }
 
-#startButton {
+.startButtons {
     font-family: 'Pacifico', cursive;
     font-size: 30px;
     color: var(--color2);
     margin: auto;
+}
+
+#startButtonsContainer {
+    align-self: center;
 }
 
 #gameScreen {
@@ -109,7 +115,6 @@ body {
     white-space: nowrap;
 }
 
-
 #generatorTab > .tabInner {
     background-color: var(--color5);
 }
@@ -146,8 +151,71 @@ body {
     display: none;
     background: var(--color1);
     height: 100vh;
+    align-content: center;
+    flex-direction: column;
 }
 
+#customGeneratorContainer {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 5px;
+    margin: 5px auto;
+    max-width: 400px;
+}
+
+#createCustomGenerator {
+    background: var(--color1-light);
+    color: white;
+}
+
+#errorDisplay {
+    color: var(--color5);
+    text-align: center;
+
+}
+
+#confirmResetPannel {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgb(0, 0, 0, 0.8);
+    background: repeating-linear-gradient(
+  45deg,
+  rgb(0, 0, 0, 0.5),
+  rgb(0, 0, 0, 0.5) 50px,
+  rgb(0, 0, 0, 0.2) 50px,
+  rgb(0, 0, 0, 0.2) 100px
+);
+    display: none;
+    z-index: 100;
+}
+
+#confirmReset {
+    background: var(--color2-light);
+    width: 350px;
+    padding: 10px;
+    text-align:center;
+    margin: 30px 10px auto 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    outline-offset: none;
+    border-radius: 10px;
+    border: solid 3px lightgrey;
+    color: gray;
+    font-family: var(--font2);
+}
+
+input[type=text]:focus {
+    border: solid 3px var(--color1-light);
+}
 
 .dividerBar {
     display: block;
@@ -188,16 +256,24 @@ body {
     margin: 10px;
 }
 
+.resetButton {
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+    color: var(--color2);
+    margin: auto;
+}
+
 .generatorDisplay {
     flex-direction: column;
     flex-basis: 350px;
-    display: flex;
+    display: none;
     background: white;
     margin: 5px;
     align-content: center;
     text-align: center;
-    align-self: baseline;
+    align-self: stretch;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+
 }
 
 .buyButtonsContainer {
@@ -217,6 +293,14 @@ body {
 
 .buyCustom {
     flex-basis: 250px;
+}
+
+.unlockButton {
+    background-color: var(--color1-light);
+    color: white;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
 }
 
 .amount {
@@ -305,6 +389,13 @@ body {
     animation-duration: 1s;
 }
 
+.errorBorder {
+    border-radius: 10px;
+    outline-offset: none;
+    border: solid 3px var(--color5) !important;
+    background: var(--color5-light) !important;
+}
+
 @keyframes buttonPaused {
     from {
         filter: brightness(0.2);
@@ -340,6 +431,11 @@ body {
     font-size: 12px;
 }
 
+.fameNum {
+    font-family: var(--font3);
+    display: inline;
+    font-weight: bold;
+}
 
 
 @media only screen and (min-width: 768px) {
@@ -375,14 +471,13 @@ body {
         width: 25vw;
         margin: 10px
     }
+    
+    #confirmReset {
+        margin: auto;
+        margin-top: 30px
+    }
 
-    b
 }
 
 
-// TODO Make the Generator Display Elements looks nice at the bottom when a full row is not filled up
-// TODO  Make Resposnive lol
-// TODO  Make it look ok on mobile First
-// TODO  Make it look ok on a computer
-// TODO  Make work for all browsers
-// TODO  [x] Make the Control Pannel look nice
+// TODO  Multpile Browser Support?
