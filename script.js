@@ -123,7 +123,7 @@ function calculateFame(generator) {
     }
 }
 
-function createGeneratorElement(generator) { // TODO change this to take in a Generator Object instead of an Index 
+function createGeneratorElement(generator) {
     //---Generates Generator Display elements---//
 
     var genAmount = generator.amount,
@@ -663,7 +663,7 @@ function sortGenerators() {
     }
 
 
-    for (var i in generatorArr) { //TODO  fix this after the createGeneratorElement fix
+    for (var i in generatorArr) {
         createGeneratorElement(generatorArr[i]);
     }
     
@@ -695,7 +695,6 @@ function sortGenerators() {
     }
     
 }
-
 
 $(document).ready(function () {
 
