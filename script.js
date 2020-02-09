@@ -36,7 +36,7 @@ function startup() {
     }
 
     for (var i in player.generators) {
-        createGeneratorElement(i);
+        createGeneratorElement(player.generators[i]);
     }
 
     for (var i in player.clickers) {
@@ -64,11 +64,13 @@ function beginGame() {
         player = savedFile;
     }
 
+
     $('#startScreen').css('display', 'none');
     $('#gameScreen').css('display', 'flex');
 
     console.log("Game Started");
     gameLoop();
+    switchScreen("generatorTab");
 }
 
 function buy() {
@@ -121,11 +123,10 @@ function calculateFame(generator) {
     }
 }
 
-function createGeneratorElement(i) {
+function createGeneratorElement(generator) {
     //---Generates Generator Display elements---//
 
-    var generator = player.generators[i],
-        genAmount = generator.amount,
+    var genAmount = generator.amount,
         genCost = generator.cost,
         genProduction = generator.baseProduction * ticksPerSecond,
         genName = generator.name;
@@ -207,9 +208,10 @@ function createGeneratorElement(i) {
 
     infoButtonDiv.appendChild(infoTextDiv);
 
-    $('#generatorPannel').append(newGenElement);
+    $('#generatorInventory').append(newGenElement);
     $('#' + genId + 'Display').data(generator);
-    $('#' + genId + 'Display').data('index', i);
+    $('#' + genId + 'Display').data('index', player.generators.findIndex(x => x.name == generator.name)
+   );
     $('#' + genId + 'Name').text(genName);
     $('#' + genId + 'UnlockButton').text("-" + generator.unlockCost + " Fame to unlock " + genName);
 
@@ -231,7 +233,7 @@ function createGeneratorElement(i) {
 
     $('#infoText' + genId).text(generator.info);
 
-    if (player.generators[i].cost == undefined) {
+    if (generator.cost == undefined) {
         $('#' + genId + 'BuyButtonsContainer').css('display', 'none');
     }
 
@@ -370,10 +372,13 @@ function updateGeneratorDisplay() {
 
 }
 
-function switchScreen() { //TODO make params optinal
-    var id = this.id,
-        cssChange = 'translate(0, vh)';
+function switchScreen(id) {
+    if (typeof (arguments[0]) != "string") {
 
+        var id = this.id;
+        console.log("Going to the screen with Id: " + id);
+    }
+    console.log(id);
 
     if (id !== 'fameTab') {
         $('.gamePannel').css('display', 'none');
@@ -393,7 +398,6 @@ function switchScreen() { //TODO make params optinal
             $('#infoTab').addClass('tabSelected');
         }
 
-        console.log("Goint to " + id + " associated Pannel.")
     }
 
 
@@ -589,11 +593,11 @@ function createCustomGenerator() {
         $('#customBaseProduction').val('').blur();
         $('#customInfo').val('').blur();
 
-        $('#generatorPannel').html('');
+        $('#generatorInventory').html('');
         $('#errorDisplay').text('');
 
         for (var i in player.generators) {
-            createGeneratorElement(i);
+            createGeneratorElement(player.generators[i]);
         }
     } else {
 
@@ -629,6 +633,69 @@ function cancelResetButton() {
     $('#confirmResetPannel').css('display', 'none');
 }
 
+function sortGenerators() {
+    var sortBy = this.id,
+        generatorArr = [];
+
+    for (var i in player.generators) {
+        generatorArr.push(player.generators[i]);
+    }
+
+    $("#generatorInventory").html('');
+    
+    if (sortBy == 'default') {
+        console.log("Sorting by Default");  
+    }
+
+    if (sortBy == 'alphabetically') {
+        generatorArr = generatorArr.sort(alphabetically);
+        console.log("Sorting Alphabetically");
+    }
+    
+    if (sortBy == 'amountAscending') {
+        generatorArr = generatorArr.sort(amountAscending);
+        console.log("Sorting by Amount-Ascending");
+    }
+    
+    if (sortBy == 'amountDescending') {
+        generatorArr = generatorArr.sort(amountDescending);
+        console.log("Sorting by Amount-Descending");
+    }
+
+
+    for (var i in generatorArr) {
+        createGeneratorElement(generatorArr[i]);
+    }
+    
+    console.log(generatorArr);
+
+    function alphabetically(a, b) {
+        var nameA = a.name.toLocaleLowerCase(),
+            nameB = b.name.toLocaleLowerCase();
+
+        if (nameA > nameB) {
+            return 1;
+        } else if (nameA < nameB) {
+            return -1;
+        }
+    }
+    
+    function amountAscending(a, b) {
+        var amountA = a.amount,
+            amountB = b.amount;
+
+        return amountA - amountB;
+    }
+    
+    function amountDescending(a, b) {
+        var amountA = a.amount,
+            amountB = b.amount;
+
+        return amountB - amountA;
+    }
+    
+}
+
 $(document).ready(function () {
 
     startup();
@@ -646,13 +713,14 @@ $(document).ready(function () {
     $(document).on('click', '#confirmResetButton', startNewGame);
     $(document).on('click', '#cancelResetButton', cancelResetButton);
 
+    $(document).on('click', '.sortButton', sortGenerators)
+
 });
 
 /*if (typeof (canvas.getContext) !== "undefined") {
     cx = canvas.getContext('2d');
     gameLoop();
 }*/
-
 
 // TODO Fix Aquaintance degredation to friends
 // TODO Make a way to sort inventory

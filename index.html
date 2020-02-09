@@ -51,7 +51,18 @@
 
         </div>
 
-        <div id='generatorPannel' class='gamePannel'></div>
+        <div id='generatorPannel' class='gamePannel'>
+            <div id="sortContainer" class="dropdown">
+                <div class="dropdown-button">Sort </div>
+                <div class="dropdown-content">
+                    <div id='default' class="sortButton">Default</div>
+                    <div id='alphabetically' class="sortButton">Alphabetically</div>
+                    <div id='amountAscending' class="sortButton">Amount Owned (Ascending)</div>
+                    <div id='amountDescending' class="sortButton">Amount Owned (Descending)</div>
+                </div>
+            </div>
+            <div id='generatorInventory'></div>
+        </div>
         <div id='clickerPannel' class='gamePannel'></div>
         <div id='upgradePannel' class='gamePannel'></div>
         <div id='infoPannel' class='gamePannel'>
@@ -70,13 +81,12 @@
 
     </div>
     <div id='confirmResetPannel'>
-        <div id='confirmReset'>Are you sure you'd like to reset?<br> Everything including custom Generators will be deleted.<div id='confirmResetButton' class='button'>Reset</div><div id='cancelResetButton' class='button'>Cancel </div>
+        <div id='confirmReset'>Are you sure you'd like to reset?<br> Everything including custom Generators will be deleted.<div id='confirmResetButton' class='button'>Reset</div>
+            <div id='cancelResetButton' class='button'>Cancel </div>
         </div>
     </div>
 
 </body>
-
-
 
 <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>-->
 <script src="https://kit.fontawesome.com/503c9ad505.js" crossorigin="anonymous"></script>

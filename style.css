@@ -84,10 +84,21 @@ body {
 
 #generatorPannel {
     display: flex;
+    flex-direction: column;
+    background: var(--color5);
+}
+
+#generatorInventory {
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     background: var(--color5);
     justify-content: center;
+}
+
+#sortContainer {
+    display: flex;
+    justify-content: left;
 }
 
 #clickerPannel {
@@ -182,13 +193,11 @@ body {
     top: 0;
     left: 0;
     background: rgb(0, 0, 0, 0.8);
-    background: repeating-linear-gradient(
-  45deg,
-  rgb(0, 0, 0, 0.5),
-  rgb(0, 0, 0, 0.5) 50px,
-  rgb(0, 0, 0, 0.2) 50px,
-  rgb(0, 0, 0, 0.2) 100px
-);
+    background: repeating-linear-gradient(45deg,
+            rgb(0, 0, 0, 0.5),
+            rgb(0, 0, 0, 0.5) 50px,
+            rgb(0, 0, 0, 0.2) 50px,
+            rgb(0, 0, 0, 0.2) 100px);
     display: none;
     z-index: 100;
 }
@@ -197,7 +206,7 @@ body {
     background: var(--color2-light);
     width: 350px;
     padding: 10px;
-    text-align:center;
+    text-align: center;
     margin: 30px 10px auto 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 
@@ -437,6 +446,52 @@ input[type=text]:focus {
     font-weight: bold;
 }
 
+.dropdown-button {
+    background-color: var(--color2-light);
+    color: white;
+    padding: 5px 20px;
+    font-size: 12px;
+    border: none;
+    margin-left: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 50px;
+    margin-left: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content div {
+    color: black;
+    padding: 5px 20px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content div:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropdown-button {
+    background-color: #3e8e41;
+}
+
 
 @media only screen and (min-width: 768px) {
     /* For desktop: */
@@ -471,7 +526,7 @@ input[type=text]:focus {
         width: 25vw;
         margin: 10px
     }
-    
+
     #confirmReset {
         margin: auto;
         margin-top: 30px
