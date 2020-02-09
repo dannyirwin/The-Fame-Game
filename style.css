@@ -268,8 +268,9 @@ input[type=text]:focus {
 .resetButton {
     font-family: 'Pacifico', cursive;
     font-size: 30px;
-    color: var(--color2);
+    color: var  (--color2);
     margin: auto;
+    max-width:300px;
 }
 
 .generatorDisplay {

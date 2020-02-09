@@ -32,7 +32,7 @@ function startup() {
     gotToStartScreen();
 
     if (localStorage.key('player') != undefined) {
-        updateObjectsOnOldSave();
+        //updateObjectsOnOldSave();
     }
 
     for (var i in player.generators) {
@@ -584,7 +584,7 @@ function createCustomGenerator() {
 
     } else if (name != '' && cost != '' && unlockCost != '' && baseProduction != '') {
 
-        console.log('All vals are full, creating Generator: ' + name);
+        //console.log('All vals are full, creating Generator: ' + name);
         player.generators.push(new Generator(name, parseFloat(unlockCost), parseFloat(cost), parseFloat(baseProduction), info));
 
         $('#customName').val('').blur();
@@ -599,6 +599,8 @@ function createCustomGenerator() {
         for (var i in player.generators) {
             createGeneratorElement(player.generators[i]);
         }
+
+        switchScreen('generatorTab');
     } else {
 
         $('#errorDisplay').text('Missing required input(s)');
