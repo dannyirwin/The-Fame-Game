@@ -436,14 +436,20 @@ function parseNum(num, wholeNumBool) {
             maximumFractionDigits: 2
         });
 
-    } else if (log10 - 5 > suffix.length) {
-        return 1 + suffix[(suffix.length - 1)] + " > ";
+    } else if (Math.floor(log10 / 3) > suffix.length) {
+        if (wholeNumBool) {
+        return (num / Math.pow(10, (log10))).toFixed(0) + "e+" + log10;
+        } else {
+
+        return (num / Math.pow(10, (log10))).toFixed(2) + "e+" + log10;
+
+        }
 
     } else {
         if (wholeNumBool) {
-            return (num / Math.pow(10, (log10 - 1))).toFixed(0) + suffix[log10 - 5];
+            return (num / Math.pow(10, (log10 - (log10 % 3)))).toFixed(0) + suffix[Math.floor(log10 / 3) - 1];
         } else {
-            return (num / Math.pow(10, (log10 - 1))).toFixed(2) + suffix[log10 - 5];
+            return (num / Math.pow(10, (log10 - (log10 % 3)))).toFixed(2) + suffix[Math.floor(log10 / 3) - 1];
         }
     }
 }
@@ -723,6 +729,8 @@ $(document).ready(function () {
     cx = canvas.getContext('2d');
     gameLoop();
 }*/
+
+// TODO Fix fame display truncation
 
 // TODO Fix Aquaintance degredation to friends
 // TODO Make a way to sort inventory
